@@ -33,9 +33,9 @@ public class UI {
         // obtendo o primeiro caractere da linha e transformando em char
         char c = line.charAt(0);
 
-        // verificando se o caractere é uma letra.
-        if (Character.isLetter(c)) {
-            throw new InvalidCharacterException("Apenas letras devems er digitadas");
+        // verificando se o caractere é diferente de letra
+        if (!Character.isLetter(c)) {
+            throw new InvalidCharacterException("Apenas letras devem ser digitadas");
         }
         return c;
     }
