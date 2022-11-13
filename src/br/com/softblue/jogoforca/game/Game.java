@@ -1,5 +1,6 @@
 package br.com.softblue.jogoforca.game;
 
+import br.com.softblue.jogoforca.core.Config;
 import br.com.softblue.jogoforca.core.Dictionary;
 import br.com.softblue.jogoforca.core.InvalidCharacterException;
 import br.com.softblue.jogoforca.core.Word;
@@ -10,8 +11,6 @@ import java.util.Set;
 
 public class Game {
 
-    private static final int MAX_ERRORS = 5;
-
     // método que inicia o jogo
     public void start() {
 
@@ -21,9 +20,11 @@ public class Game {
         UI.print("A palavra tem " + word.size() + " letras");  // imprimindo o tamanho da palavra
         Set<Character> usedChard = new HashSet<>(); // armazenando nesse conjunto todas as letras do usuario ja escolheu
         int errorCount = 0;
+        int maxErrors = Integer.parseInt(Config.get("maxErrors"));
+        UI.print("Você pode errar no máximo " + maxErrors + " vezes");
+        UI.printNewLine();
 
         while (true) {
-            UI.printNewLine();
             UI.print(word);
             UI.printNewLine();
             char c;
@@ -44,8 +45,8 @@ public class Game {
                     errorCount++;
 
                     // verificando se o usuário já cometeu 5 erros
-                    if (errorCount < MAX_ERRORS) {
-                        UI.print("Você errou! Você ainda pode errar " + (MAX_ERRORS - errorCount) + " vez(es)");
+                    if (errorCount < maxErrors) {
+                        UI.print("Você errou! Você ainda pode errar " + (maxErrors - errorCount) + " vez(es)");
                     }
                 }
                 UI.printNewLine();
@@ -58,7 +59,7 @@ public class Game {
                 }
 
                 // verificando se o usuário já cometeu 5 erros
-                if (errorCount  == MAX_ERRORS) {
+                if (errorCount  == maxErrors) {
                     UI.print("Você perdeu o jogo! A palavra correta era: " + word.getOriginalWord());
                     UI.print("FIM DE JOGO");
                     break; //  quebrando o loop se o usuario errar 5 vezes
