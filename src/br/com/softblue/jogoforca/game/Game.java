@@ -16,6 +16,7 @@ public class Game {
 
         UI.print("Bem Vindo ao Jogo da Forca!");
         Dictionary dictionary = Dictionary.getInstance(); // instanciando a classe Dictionary
+        UI.print("Dicionário usado: " + dictionary.getName());
         Word word = dictionary.nextWord();  // retornando uma palavra aleatória do dicionário
         UI.print("A palavra tem " + word.size() + " letras");  // imprimindo o tamanho da palavra
         Set<Character> usedChard = new HashSet<>(); // armazenando nesse conjunto todas as letras do usuario ja escolheu
