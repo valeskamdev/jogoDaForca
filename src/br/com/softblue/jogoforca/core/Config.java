@@ -21,4 +21,9 @@ public class Config {
         return props.getProperty(name);
     }
 
+    //  método que define o número máximo de erros
+    public static void setMaxErrors(String maxErrors) {
+        props.setProperty("maxErrors", maxErrors);
+    }
+
 }

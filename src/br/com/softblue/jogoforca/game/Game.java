@@ -12,7 +12,7 @@ import java.util.Set;
 public class Game {
 
     // método que inicia o jogo
-    public void start() {
+    public void start(String[] args) {
 
         UI.print("Bem Vindo ao Jogo da Forca!");
         Dictionary dictionary = Dictionary.getInstance(); // instanciando a classe Dictionary
@@ -20,6 +20,13 @@ public class Game {
         UI.print("A palavra tem " + word.size() + " letras");  // imprimindo o tamanho da palavra
         Set<Character> usedChard = new HashSet<>(); // armazenando nesse conjunto todas as letras do usuario ja escolheu
         int errorCount = 0;
+
+
+        // verificando se o usuário passou algum argumento para o programa
+        if (args.length > 0) {
+            Config.setMaxErrors(args[0]);  // configurando o número máximo de erros permitidos no jogo (Run configurations)
+        }
+
         int maxErrors = Integer.parseInt(Config.get("maxErrors"));
         UI.print("Você pode errar no máximo " + maxErrors + " vezes");
         UI.printNewLine();
